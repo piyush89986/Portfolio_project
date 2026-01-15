@@ -174,7 +174,7 @@ const experiences = [
 const testimonials = [
   {
     testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Huzaif proved me wrong.",
+      "I thought it was impossible to make a website as beautiful as our product, but piyush proved me wrong.",
     name: "Aayush atre",
     designation: "Ecommerce",
     company: "Gamma-stack",
@@ -182,7 +182,7 @@ const testimonials = [
   },
   {
     testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Huzaif does.",
+      "I've never met a web developer who truly cares about their clients' success like piyush does.",
     name: "Sarang bhavasker",
     designation: "Ecommerce Business",
     company: "Techtoil",
@@ -190,7 +190,7 @@ const testimonials = [
   },
   {
     testimonial:
-      "After Huzaif optimized our website, our traffic increased by 50%. We can't thank them enough!",
+      "After piyush optimized our website, our traffic increased by 50%. We can't thank them enough!",
     name: "dheeraj gami",
     designation: "CTO",
     company: "456 Enterprises",
