@@ -36,6 +36,10 @@ import  project4  from '../assets/project4.webp';
 import  project5  from '../assets/project5.webp';
 import  project6 from "../assets/project6.webp";
 import mindlogo from "../assets/mindlogo.svg"
+import carrental from "../assets/carrental.png";
+import chatapp from "../assets/chatapp.png";
+import chess from "../assets/chess.png";
+import room from "../assets/room.png";
 
 
 // Import Tekisky separately
@@ -262,6 +266,92 @@ const projects = [
     image: project5,
     source_code_link: "https://github.com/piyush89986/Gta-style-landing-page",
   },
+  {
+    name: "Car rental",
+    description:
+      "Welcome to our Car Rental Platform, a modern and user-friendly solution for renting vehicles quickly and conveniently. Our platform allows users to browse a wide range of cars, view detailed specifications, check availability, and make bookings with ease. Whether you need a compact car for city travel, a luxury sedan for business trips, or an SUV for family vacations, we provide reliable and affordable rental options.",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "nodejs",
+        color: "white-text-gradient",
+      },
+      {
+        name: "mongoDB",
+        color: "green-text-gradient",
+      },
+    ],
+    image: carrental,
+    source_code_link: "https://github.com/piyush89986/car-reantal-backend",
+  },
+  {
+    name: "chess",
+    description:
+      "Chess Application is an interactive web-based chess game that allows players to enjoy the classic game of chess with a clean and responsive user interface. The application implements official chess rules, move validation, piece movements, check/checkmate detection, and a smooth gameplay experience across devices..",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "nodejs",
+        color: "white-text-gradient",
+      },
+      {
+        name: "MongoDB",
+        color: "green-text-gradient",
+      },
+    ],
+    image: chess,
+    source_code_link: "https://github.com/piyush89986/chess-application",
+  },
+   {
+    name: "Chatapp",
+    description:
+      "A modern real-time chat application that enables seamless communication through instant messaging. Built with a responsive and user-friendly interface, it supports fast message delivery, secure authentication, and smooth conversations across devices, providing an engaging and reliable chatting experience.",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "nodejs",
+        color: "white-text-gradient",
+      },
+      {
+        name: "MongoDB",
+        color: "green-text-gradient",
+      },
+    ],
+    image: chatapp,
+    source_code_link: "https://github.com/piyush89986/chatapp-Frontend",
+  }
+  ,
+  {
+    name: "Room finder",
+    description:
+      "A modern room finder application that helps users easily search, explore, and discover available rooms based on their preferences. The platform features an intuitive interface, detailed room listings, and a responsive design for a seamless browsing experience across devices.",
+    tags: [
+      {
+        name: "Tailwind css",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "redux",
+        color: "white-text-gradient",
+      },
+      {
+        name: "Reactjs",
+        color: "green-text-gradient",
+      },
+    ],
+    image: room,
+    source_code_link: "https://github.com/piyush89986/Roomate-finder",
+  }
+
 ];
 
 export { services, technologies, experiences, testimonials, projects};
