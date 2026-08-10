@@ -14,7 +14,8 @@ import {
   express,
   aws,
   mui,
-  
+  shivnshki,
+
   gsap,
   framer,
   figma,
@@ -32,14 +33,17 @@ import {
   thirdTestimonial,
 } from '../assets'
 
-import  project4  from '../assets/project4.webp';
-import  project5  from '../assets/project5.webp';
-import  project6 from "../assets/project6.webp";
+import project4 from '../assets/project4.webp';
+import project5 from '../assets/project5.webp';
+import project6 from "../assets/project6.webp";
 import mindlogo from "../assets/mindlogo.svg"
 import carrental from "../assets/carrental.png";
 import chatapp from "../assets/chatapp.png";
 import chess from "../assets/chess.png";
 import room from "../assets/room.png";
+import JARVIS from "../assets/JARVIS.png";
+import TRACKER from "../assets/TRACKER.png";
+import INSTABOT from "../assets/INSTABOT.png";
 
 
 // Import Tekisky separately
@@ -52,7 +56,7 @@ export const navLinks = [
   {
     id: "about",
     title: "About",
-    
+
   },
   {
     id: "work",
@@ -109,7 +113,7 @@ const technologies = [
     icon: framer,
   },
 
- 
+
   {
     name: "Three JS",
     icon: threejs,
@@ -155,13 +159,13 @@ const technologies = [
     name: "git",
     icon: git,
   },
- 
+
 
 ];
 
 const experiences = [
   {
-    title: "Full-Stack Developer Intern",
+    title: "MERN-Stack developer Intern",
     company_name: "Mindcoders",
     icon: mindlogo,
     iconBg: "#383E56",
@@ -171,6 +175,18 @@ const experiences = [
       "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
       "Implementing responsive design and ensuring cross-browser compatibility.",
       "Participating in code reviews and providing constructive feedback to other developers.",
+    ],
+  }, {
+    title: "Software developer intern",
+    company_name: "Shiavnski Technologies LLP",
+    icon: shivnshki,
+    iconBg: "#383E56",
+    date: "jun 2026 - aug 2025",
+    points: [
+      "Worked on real-world software development projects and contributed to feature development.",
+      "Designed and implemented functional solutions based on project requirements and business needs.",
+      "Troubleshot technical issues, debugged application errors, and improved overall system performance.",
+      "Gained hands-on experience with development workflows, version control, testing, and team collaboration.",
     ],
   },
 ];
@@ -308,7 +324,7 @@ const projects = [
     image: chess,
     source_code_link: "https://github.com/piyush89986/chess-application",
   },
-   {
+  {
     name: "Chatapp",
     description:
       "A modern real-time chat application that enables seamless communication through instant messaging. Built with a responsive and user-friendly interface, it supports fast message delivery, secure authentication, and smooth conversations across devices, providing an engaging and reliable chatting experience.",
@@ -350,8 +366,87 @@ const projects = [
     ],
     image: room,
     source_code_link: "https://github.com/piyush89986/Roomate-finder",
-  }
+  },
+  {
+    name: "Jarvis",
+    description:
+      "J.A.R.V.I.S is a personal AI study assistant built for B.Tech students — 'Just A Rather Very Intelligent System' that helps students study smarter with an interactive, assistant-style interface.",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "vite",
+        color: "green-text-gradient",
+      },
+      {
+        name: "javascript",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "openAi",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "python",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: JARVIS,
+    source_code_link: "https://github.com/piyush89986/jarvis0f",
+  },
+  {
+    name: "Tracking Website",
+    description:
+      "A website designed to help track weather and locations in real-time.",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "redux-toolkit",
+        color: "white-text-gradient",
+      },
+      {
+        name: "leafletjs",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "javascript",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: TRACKER,
+    source_code_link: "https://github.com/piyush89986/Weather-Tracker",
+  },
+  {
+    name: "Instagram Bot",
+    description:
+      "A modern React application bot integrated with the Instagram Business API.",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "redux-toolkit",
+        color: "white-text-gradient",
+      },
+      {
+        name: "META",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "javascript",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: INSTABOT,
+    source_code_link: "https://github.com/piyush89986/instabotfr",
+  },
 
 ];
 
-export { services, technologies, experiences, testimonials, projects};
+export { services, technologies, experiences, testimonials, projects };
