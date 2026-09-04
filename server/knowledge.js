@@ -91,6 +91,17 @@ He is a quick learner who collaborates effectively in cross-functional teams to 
   // --------------------------------------------------------------------------
   experience: [
     {
+      role: "Freelance / Personal Client Developer",
+      company: "Client Project",
+      duration: "Recent",
+      highlights: [
+        "Engineered an inventory management system for a personal client handling products and order tracking.",
+        "Built and optimized full-stack web applications, handled end-to-end SEO, and ran paid marketing/ads.",
+        "Optimized backend architecture and scalability to handle 10,000+ API calls efficiently."
+      ],
+      notes: "Experience with inventory systems, scalability up to 10k API calls, SEO optimization, and client delivery."
+    },
+    {
       role: "MERN-Stack Developer Intern",
       company: "Mindcoders",
       duration: "Oct 2025 - Jan 2025",
@@ -195,52 +206,66 @@ He is a quick learner who collaborates effectively in cross-functional teams to 
  * for the OpenAI model.
  */
 export function buildSystemPrompt() {
+  const skillsFrontend = Array.isArray(knowledge.skills?.frontend) ? knowledge.skills.frontend.join(", ") : "";
+  const skillsBackend = Array.isArray(knowledge.skills?.backend) ? knowledge.skills.backend.join(", ") : "";
+  const skillsDatabases = Array.isArray(knowledge.skills?.databases) ? knowledge.skills.databases.join(", ") : "";
+  const skillsDevops = Array.isArray(knowledge.skills?.devops_cloud) ? knowledge.skills.devops_cloud.join(", ") : "";
+  const skillsTools = Array.isArray(knowledge.skills?.design_tools) ? knowledge.skills.design_tools.join(", ") : "";
+
+  const experienceText = Array.isArray(knowledge.experience)
+    ? knowledge.experience
+        .map((exp) => {
+          if (typeof exp === "string") return `• ${exp}`;
+          const role = exp.role ? `• Role: ${exp.role} at ${exp.company || "Client"} (${exp.duration || "N/A"})` : "";
+          const about = exp.about || exp.aboutexperince || exp.notes || "";
+          const highlights = Array.isArray(exp.highlights)
+            ? exp.highlights.map((h) => `  - ${h}`).join("\n")
+            : "";
+          return [role, about ? `  Notes: ${about}` : "", highlights].filter(Boolean).join("\n");
+        })
+        .join("\n\n")
+    : "";
+
+  const projectsText = Array.isArray(knowledge.projects)
+    ? knowledge.projects
+        .map((p) => {
+          const techs = Array.isArray(p.technologies) ? p.technologies.join(", ") : "";
+          return `• ${p.title || "Project"} (${p.category || "Development"})\n  Technologies: ${techs}\n  Description: ${p.description || ""}\n  GitHub: ${p.github || ""}`;
+        })
+        .join("\n\n")
+    : "";
+
+  const faqsText = Array.isArray(knowledge.faqs)
+    ? knowledge.faqs.map((faq) => `Q: ${faq.question}\nA: ${faq.answer}`).join("\n\n")
+    : "";
+
   return `
-${knowledge.systemInstructions}
+${knowledge.systemInstructions || ""}
 
 === CANDIDATE PROFILE ===
-Name: ${knowledge.candidate.fullName}
-Headline: ${knowledge.candidate.headline}
-Email: ${knowledge.candidate.email}
-GitHub: ${knowledge.candidate.github}
-LinkedIn: ${knowledge.candidate.linkedin}
-Twitter: ${knowledge.candidate.twitter}
-Availability: ${knowledge.candidate.availability}
-Bio: ${knowledge.candidate.bio.trim()}
+Name: ${knowledge.candidate?.fullName || "Piyush Singh Tanwar"}
+Headline: ${knowledge.candidate?.headline || ""}
+Email: ${knowledge.candidate?.email || ""}
+GitHub: ${knowledge.candidate?.github || ""}
+LinkedIn: ${knowledge.candidate?.linkedin || ""}
+Twitter: ${knowledge.candidate?.twitter || ""}
+Availability: ${knowledge.candidate?.availability || ""}
+Bio: ${(knowledge.candidate?.bio || "").trim()}
 
 === TECHNICAL SKILLS ===
-• Frontend: ${knowledge.skills.frontend.join(", ")}
-• Backend: ${knowledge.skills.backend.join(", ")}
-• Databases: ${knowledge.skills.databases.join(", ")}
-• DevOps & Cloud: ${knowledge.skills.devops_cloud.join(", ")}
-• Tools: ${knowledge.skills.design_tools.join(", ")}
+• Frontend: ${skillsFrontend}
+• Backend: ${skillsBackend}
+• Databases: ${skillsDatabases}
+• DevOps & Cloud: ${skillsDevops}
+• Tools: ${skillsTools}
 
 === WORK EXPERIENCE ===
-${knowledge.experience
-  .map(
-    (exp) => `
-• Role: ${exp.role} at ${exp.company} (${exp.duration})
-  Highlights:
-  ${exp.highlights.map((h) => `  - ${h}`).join("\n")}
-`
-  )
-  .join("\n")}
+${experienceText}
 
 === FEATURED PROJECTS ===
-${knowledge.projects
-  .map(
-    (p) => `
-• ${p.title} (${p.category})
-  Technologies: ${p.technologies.join(", ")}
-  Description: ${p.description}
-  GitHub: ${p.github}
-`
-  )
-  .join("\n")}
+${projectsText}
 
 === COMMON RECRUITER QUESTIONS ===
-${knowledge.faqs
-  .map((faq) => `Q: ${faq.question}\nA: ${faq.answer}`)
-  .join("\n\n")}
+${faqsText}
 `.trim();
 }

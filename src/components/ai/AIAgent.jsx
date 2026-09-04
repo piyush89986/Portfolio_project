@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { generateAIResponse, RECRUITER_PROMPT_CHIPS } from "./aiKnowledge";
+import { RECRUITER_PROMPT_CHIPS } from "./aiKnowledge";
 
 const AIAgent = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -89,26 +89,24 @@ const AIAgent = () => {
     let responseText = "";
 
     try {
-      // 1. Try reaching Node.js backend with OpenAI & Redis
+      // Call Node.js backend / Vercel Serverless Function
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text, sessionId }),
       });
 
-      if (res.ok) {
-        const data = await res.json();
-        if (data.response) {
-          responseText = data.response;
-        }
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.response) {
+        responseText = data.response;
+      } else {
+        responseText =
+          data.error ||
+          "⚠️ Unable to get a response from AI. Please check if your OPENAI_API_KEY is configured on Vercel or in server/.env.";
       }
     } catch (err) {
-      // Backend not running or network issue - will use fallback
-    }
-
-    // 2. Graceful fallback to local knowledge engine
-    if (!responseText) {
-      responseText = generateAIResponse(text);
+      responseText =
+        "⚠️ Connection to AI service failed. Please make sure the server/deployment is running.";
     }
 
     const aiMessageId = `ai-${Date.now()}`;

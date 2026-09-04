@@ -219,23 +219,25 @@ app.post("/api/chat", async (req, res) => {
         const completion = await openai.chat.completions.create({
           model: process.env.OPENAI_MODEL || "gpt-4o-mini",
           messages,
-          temperature: 0.4,
-          max_tokens: 450,
+          temperature: 0.5,
+          max_tokens: 500,
         });
 
         answerText = completion.choices[0]?.message?.content?.trim() || "";
       } catch (openAiError) {
         console.error("OpenAI Error:", openAiError.message);
-        // Fallback to local knowledge if OpenAI errors (e.g. rate limit / network)
-        answerText = generateFallbackAnswer(cleanMessage);
+        return res.status(500).json({
+          error: `OpenAI Error: ${openAiError.message}`,
+        });
       }
     } else {
-      // Direct local knowledge answering when no OpenAI key is configured
-      answerText = generateFallbackAnswer(cleanMessage);
+      return res.status(400).json({
+        error: "OPENAI_API_KEY is not set in server/.env. Please configure your key.",
+      });
     }
 
     if (!answerText) {
-      answerText = generateFallbackAnswer(cleanMessage);
+      return res.status(500).json({ error: "OpenAI returned an empty response." });
     }
 
     // 4. Update session history in Redis / memory
@@ -250,78 +252,15 @@ app.post("/api/chat", async (req, res) => {
 
     return res.json({
       response: answerText,
-      source: openai ? "openai" : "local-knowledge-engine",
+      source: "openai",
     });
   } catch (err) {
     console.error("Server Error in /api/chat:", err);
     res.status(500).json({
-      error: "An error occurred while generating the response.",
-      fallback: generateFallbackAnswer(req.body?.message || ""),
+      error: err.message || "An error occurred while generating the response.",
     });
   }
 });
-
-/**
- * Robust fallback knowledge generator using server/knowledge.js
- */
-function generateFallbackAnswer(query) {
-  const q = query.toLowerCase();
-
-  if (q.includes("skill") || q.includes("stack") || q.includes("tech") || q.includes("language")) {
-    return `### ⚡ Technical Stack & Proficiencies
-
-• **Frontend:** ${knowledge.skills.frontend.join(", ")}
-• **Backend:** ${knowledge.skills.backend.join(", ")}
-• **Databases:** ${knowledge.skills.databases.join(", ")}
-• **Cloud & DevOps:** ${knowledge.skills.devops_cloud.join(", ")}
-• **Design & Tools:** ${knowledge.skills.design_tools.join(", ")}
-
-*Piyush specializes in combining high-performance React architectures with Three.js 3D animations and scalable Node.js backends.*`;
-  }
-
-  if (q.includes("project") || q.includes("portfolio") || q.includes("github") || q.includes("built")) {
-    const list = knowledge.projects
-      .map(
-        (p, i) =>
-          `${i + 1}. **${p.title}** (${p.technologies.slice(0, 3).join(", ")})\n   • ${p.description}\n   • [GitHub Repository](${p.github})`
-      )
-      .join("\n\n");
-
-    return `### 🚀 Featured Engineering Projects\n\n${list}\n\n*Explore all 40+ repositories on his [GitHub Profile](${knowledge.candidate.github})!*`;
-  }
-
-  if (q.includes("experience") || q.includes("work") || q.includes("intern") || q.includes("company")) {
-    const expList = knowledge.experience
-      .map(
-        (exp) =>
-          `**${exp.role} @ ${exp.company}** *(${exp.duration})*\n${exp.highlights.map((h) => `• ${h}`).join("\n")}`
-      )
-      .join("\n\n");
-
-    return `### 💼 Professional Experience & Internships\n\n${expList}`;
-  }
-
-  if (q.includes("contact") || q.includes("hire") || q.includes("email") || q.includes("reach") || q.includes("linkedin")) {
-    return `### 📬 Ready to Connect & Hire!
-
-Piyush is available for full-time roles, internships, and freelance projects:
-
-• ✉️ **Direct Email:** [${knowledge.candidate.email}](mailto:${knowledge.candidate.email})
-• 💼 **LinkedIn:** [Piyush Singh Tanwar](${knowledge.candidate.linkedin})
-• 🐙 **GitHub:** [github.com/piyush89986](${knowledge.candidate.github})
-• 🐦 **X (Twitter):** [@piyushsing91395](${knowledge.candidate.twitter})
-
-*You can also send a direct message through the Contact form at the bottom of the portfolio.*`;
-  }
-
-  // Default answer
-  return `Hello! Ask me anything about Piyush's skills, projects, work experience, or contact details:
-
-• **Technical Skills** — React, Node.js, Three.js, GSAP, MongoDB, Tailwind
-• **Featured Projects** — AI Image Enhancer, Jarvis AI, 3D Web Apps
-• **Work Experience** — Mindcoders & Shivanski Technologies internships
-• **Contact & Socials** — Direct email, LinkedIn, and GitHub links`;
-}
 
 // ---------------------------------------------------------------------------
 // START SERVER
