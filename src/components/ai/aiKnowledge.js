@@ -3,12 +3,12 @@
 export const PIYUSH_PROFILE = {
   name: "Piyush Singh Tanwar",
   role: "MERNSTACK Developer, DevOps & Software Engineer",
-  email: [`piyush27082006@gmail.com`, `tanwarpiyushsingh31@gmail.com`,
-    resume: "https://drive.google.com/file/d/1JNDUwo1Tu0stzwYIa8wYti_jmC24MzPo/view?usp=drive_link",
-    github: "https://github.com/piyush89986",
-    linkedin: "https://www.linkedin.com/in/piyush-singh-tanwar-07a03833b",
-    twitter: "https://x.com/piyushsing91395",
-    instagram: "https://www.instagram.com/piyush.singh.tanwar",
+  email: ["piyush27082006@gmail.com", "tanwarpiyushsingh31@gmail.com"],
+  resume: "https://drive.google.com/file/d/1JNDUwo1Tu0stzwYIa8wYti_jmC24MzPo/view?usp=drive_link",
+  github: "https://github.com/piyush89986",
+  linkedin: "https://www.linkedin.com/in/piyush-singh-tanwar-07a03833b",
+  twitter: "https://x.com/piyushsing91395",
+  instagram: "https://www.instagram.com/piyush.singh.tanwar",
     summary:
     "Passionate Full-Stack and DevOps developer specializing in building high-performance modern web applications, interactive 3D experiences with Three.js & GSAP, and scalable full-stack software with the MERN stack and cloud integrations.",
 
