@@ -38,13 +38,13 @@ Core Directives:
   // --------------------------------------------------------------------------
   candidate: {
     fullName: "Piyush Singh Tanwar",
-    headline: "Full-Stack Developer, DevOps & Software Engineer",
-    email: "tanwarpiyushsingh31@gmail.com",
+    headline: "MERNSTACK Developer, DevOps & Software Engineer",
+    email: "piyush27082006@gmail.com / tanwarpiyushsingh31@gmail.com",
     resumeUrl: "https://drive.google.com/file/d/1JNDUwo1Tu0stzwYIa8wYti_jmC24MzPo/view?usp=drive_link",
     github: "https://github.com/piyush89986",
     linkedin: "https://www.linkedin.com/in/piyush-singh-tanwar-07a03833b",
     twitter: "https://x.com/piyushsing91395",
-    instagram: "https://www.instagram.com/piyush___._._/",
+    instagram: "https://www.instagram.com/piyush.singh.tanwar",
     location: "India",
     availability: "Available for Full-time Roles, Internships, and Freelance Projects",
     bio: `
