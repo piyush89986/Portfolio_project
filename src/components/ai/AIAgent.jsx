@@ -9,7 +9,7 @@ const AIAgent = () => {
     {
       id: "welcome-msg",
       sender: "ai",
-      text: "👋 Hi! Ask me anything about Piyush's skills, projects, work experience, or how to get in touch.",
+      text: "👋 Hey! This side piyush what can i do for you?",
       timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
     },
   ]);
@@ -206,9 +206,8 @@ const AIAgent = () => {
         <button
           ref={triggerRef}
           onClick={() => setIsOpen(!isOpen)}
-          className={`relative p-3.5 sm:p-4 rounded-full bg-tertiary/90 border border-[#915EFF]/60 shadow-[0_0_25px_rgba(145,94,255,0.45)] backdrop-blur-xl transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer flex items-center justify-center group ${
-            isOpen ? "rotate-90 bg-[#915EFF] text-white" : "text-[#915EFF]"
-          }`}
+          className={`relative p-3.5 sm:p-4 rounded-full bg-tertiary/90 border border-[#915EFF]/60 shadow-[0_0_25px_rgba(145,94,255,0.45)] backdrop-blur-xl transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer flex items-center justify-center group ${isOpen ? "rotate-90 bg-[#915EFF] text-white" : "text-[#915EFF]"
+            }`}
           aria-label={isOpen ? "Close AI chat" : "Open AI chat"}
           title="Ask about Piyush"
         >
@@ -271,11 +270,10 @@ const AIAgent = () => {
                     </div>
                   )}
                   <div
-                    className={`max-w-[85%] rounded-2xl p-3.5 text-sm shadow-md ${
-                      isAi
-                        ? "bg-black-100/90 border border-white/10 text-white-100 rounded-tl-sm"
-                        : "bg-gradient-to-r from-[#804dee] to-[#915EFF] text-white font-medium rounded-tr-sm shadow-md"
-                    }`}
+                    className={`max-w-[85%] rounded-2xl p-3.5 text-sm shadow-md ${isAi
+                      ? "bg-black-100/90 border border-white/10 text-white-100 rounded-tl-sm"
+                      : "bg-gradient-to-r from-[#804dee] to-[#915EFF] text-white font-medium rounded-tr-sm shadow-md"
+                      }`}
                   >
                     {isAi ? renderFormattedText(msg.text) : msg.text}
                     <div className={`text-[10px] mt-1.5 text-right ${isAi ? "text-secondary/60" : "text-white/70"}`}>
@@ -322,11 +320,10 @@ const AIAgent = () => {
               <button
                 type="submit"
                 disabled={!inputMessage.trim() || isTyping}
-                className={`p-2.5 rounded-xl flex items-center justify-center transition-all cursor-pointer border-none ${
-                  inputMessage.trim() && !isTyping
-                    ? "bg-[#915EFF] text-white shadow-[0_0_15px_rgba(145,94,255,0.5)] hover:scale-105 active:scale-95"
-                    : "bg-tertiary text-secondary/40 cursor-not-allowed"
-                }`}
+                className={`p-2.5 rounded-xl flex items-center justify-center transition-all cursor-pointer border-none ${inputMessage.trim() && !isTyping
+                  ? "bg-[#915EFF] text-white shadow-[0_0_15px_rgba(145,94,255,0.5)] hover:scale-105 active:scale-95"
+                  : "bg-tertiary text-secondary/40 cursor-not-allowed"
+                  }`}
                 title="Send Message"
                 aria-label="Send"
               >
