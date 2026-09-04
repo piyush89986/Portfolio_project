@@ -58,7 +58,20 @@ const AIAgent = () => {
     }
   }, [isOpen]);
 
-  const handleSendMessage = (textToSend) => {
+  const [sessionId] = useState(() => {
+    try {
+      let sid = sessionStorage.getItem("portfolio_ai_session_id");
+      if (!sid) {
+        sid = `session_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+        sessionStorage.setItem("portfolio_ai_session_id", sid);
+      }
+      return sid;
+    } catch {
+      return `session_${Date.now()}`;
+    }
+  });
+
+  const handleSendMessage = async (textToSend) => {
     const text = (textToSend || inputMessage).trim();
     if (!text) return;
 
@@ -73,18 +86,45 @@ const AIAgent = () => {
     setInputMessage("");
     setIsTyping(true);
 
-    // Simulate AI thinking and typing response
-    setTimeout(() => {
-      const responseText = generateAIResponse(text);
-      const aiResponse = {
-        id: `ai-${Date.now()}`,
+    let responseText = "";
+
+    try {
+      // 1. Try reaching Node.js backend with OpenAI & Redis
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text, sessionId }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data.response) {
+          responseText = data.response;
+        }
+      }
+    } catch (err) {
+      // Backend not running or network issue - will use fallback
+    }
+
+    // 2. Graceful fallback to local knowledge engine
+    if (!responseText) {
+      responseText = generateAIResponse(text);
+    }
+
+    const aiMessageId = `ai-${Date.now()}`;
+    const timestamp = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+    // Stream/Typewriter effect
+    setIsTyping(false);
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: aiMessageId,
         sender: "ai",
         text: responseText,
-        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-      };
-      setMessages((prev) => [...prev, aiResponse]);
-      setIsTyping(false);
-    }, 600);
+        timestamp,
+      },
+    ]);
   };
 
   const handleKeyDown = (e) => {
