@@ -48,6 +48,17 @@ import INSTABOT from "../assets/INSTABOT.png";
 
 // Import Tekisky separately
 import tekisky from "../assets/company/tekisky.png";
+import itsoftlab from "../assets/itsoftlab.png";
+
+import typescript from "../assets/tech/typescript.png";
+import docker from "../assets/tech/docker.png";
+import postgresql from "../assets/tech/postgresql.png";
+import python from "../assets/Python.png";
+import azure from "../assets/Azure.png";
+import cLanguage from "../assets/C.png";
+import pandas from "../assets/Pandas.png";
+import json from "../assets/JSON.png";
+import kaggle from "../assets/Kaggle.png";
 
 
 export const navLinks = [
@@ -103,6 +114,9 @@ const technologies = [
   {
     name: "React JS",
     icon: reactjs,
+  }, {
+    name: "Python",
+    icon: python,
   },
   {
     name: "gsap",
@@ -159,8 +173,39 @@ const technologies = [
     name: "git",
     icon: git,
   },
-
-
+  {
+    name: "TypeScript",
+    icon: typescript,
+  },
+  {
+    name: "Docker",
+    icon: docker,
+  },
+  {
+    name: "PostgreSQL",
+    icon: postgresql,
+  },
+ 
+  {
+    name: "Azure",
+    icon: azure,
+  },
+  {
+    name: "C",
+    icon: cLanguage,
+  },
+  {
+    name: "Pandas",
+    icon: pandas,
+  },
+  {
+    name: "JSON",
+    icon: json,
+  },
+  {
+    name: "Kaggle",
+    icon: kaggle,
+  },
 ];
 
 const experiences = [
@@ -189,6 +234,21 @@ const experiences = [
       "Gained hands-on experience with development workflows, version control, testing, and team collaboration.",
     ],
   },
+  {
+    title: "Software Engineer Intern",
+    company_name: "ITsoftlab",
+    icon: itsoftlab,
+    iconBg: "#383E56",
+    date: "Oct 2026",
+    points: [
+      "Building and enhancing full-stack web applications using modern JavaScript technologies.",
+      "Developing scalable backend services, RESTful APIs, and database integrations.",
+      "Creating responsive and user-friendly interfaces while ensuring performance and cross-browser compatibility.",
+      "Debugging application issues, optimizing code, and implementing efficient solutions.",
+      "Collaborating with team members through Git and GitHub to manage code changes and maintain development workflows.",
+    ],
+  }
+
 ];
 
 const testimonials = [
