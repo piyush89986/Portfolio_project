@@ -85,15 +85,15 @@ const services = [
     icon: web,
   },
   {
-    title: "Frontend Developer",
+    title: "Ai Engineer",
     icon: mobile,
   },
   {
-    title: "Backend Developer",
+    title: "Data Analyst",
     icon: backend,
   },
   {
-    title: "Ui UX Designer",
+    title: "AIML Engineer",
     icon: creator,
   },
 ];
